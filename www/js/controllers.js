@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
 .controller('WelcomeCtrl', function($scope, $rootScope, $state, $firebaseArray) {
 
-    var api = new Firebase("https://tlt-apps.firebaseio.com/chat/userdata");
+    var api = new Firebase("https://tlt-apps.firebaseio.com/chat-app/userdata");
     $scope.userdata = $firebaseArray(api);
 
     $scope.saveUserData = function(data) {
@@ -20,7 +20,7 @@ angular.module('starter.controllers', [])
 .controller('ChatsCtrl', function($scope, $state, $firebaseObject, $ionicLoading) {
     $ionicLoading.show();
 
-    var api = new Firebase("https://tlt-apps.firebaseio.com/chat/userdata");
+    var api = new Firebase("https://tlt-apps.firebaseio.com/chat-app/userdata");
     var obj = $firebaseObject(api);
     obj.$loaded().then(function() {
         $scope.userdata = obj;
@@ -45,16 +45,13 @@ angular.module('starter.controllers', [])
     var resf = str.slice(0, 10);
     var ress = str.slice(10, 20);
 
-    console.log(resf);
-    console.log(ress);
+    var sum = parseFloat($scope.imobile) + parseFloat($scope.mobile);
 
     if (resf == $scope.imobile && ress == $scope.mobile) {
-        $scope.setu = "chat-id"
+        $scope.chatRoomId = sum;
     }
 
-
-
-    var api = new Firebase("https://tlt-apps.firebaseio.com/chat/chats/" + $scope.setu);
+    var api = new Firebase("https://tlt-apps.firebaseio.com/chat-app/chats/" + $scope.chatRoomId);
     $scope.chats = $firebaseArray(api);
 
     $scope.sendChat = function(chat) {
