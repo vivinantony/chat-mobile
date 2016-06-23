@@ -32,7 +32,7 @@ angular.module('starter.controllers', [])
 
     $scope.openChatHead = function(data) {
         console.log(data);
-        $state.go('app.chathead', { id: data.mobile + $scope.imobile, name: data.name, name: data.name, mobile: data.mobile })
+        $state.go('app.chathead', { id: $scope.imobile + data.mobile, name: data.name, name: data.name, mobile: data.mobile })
     }
 
 })
@@ -49,7 +49,7 @@ angular.module('starter.controllers', [])
     console.log(ress);
 
     if (resf == $scope.mobile && ress == $scope.imobile) {
-        $scope.setu = f5
+        $scope.setu = "chat-id"
     }
 
 
