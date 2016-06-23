@@ -1,11 +1,17 @@
 angular.module('starter.controllers', [])
 
-.controller('WelcomeCtrl', function($scope, $rootScope, $state, $firebaseArray) {
+.controller('WelcomeCtrl', function($scope, $rootScope, $state, $firebaseArray, $firebaseObject) {
 
     var api = new Firebase("https://tlt-apps.firebaseio.com/chat-app/userdata");
     $scope.userdata = $firebaseArray(api);
 
     $scope.saveUserData = function(data) {
+        // if (data.mobile != obj[0].mobile) {
+        //     console.log("Created");
+        // } else {
+        //     console.log("Exists");
+        // }
+
         $scope.userdata.$add({
             name: data.name,
             mobile: data.mobile
@@ -37,7 +43,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ChatHeadCtrl', function($scope, $rootScope, $firebaseArray, $stateParams) {
+.controller('ChatHeadCtrl', function($scope, $rootScope, $firebaseArray, $stateParams, $ionicScrollDelegate) {
     $scope.name = $stateParams.name;
     $scope.mobile = $stateParams.mobile;
     $scope.id = $stateParams.id;
@@ -62,6 +68,7 @@ angular.module('starter.controllers', [])
             message: chat.message
         });
         chat.message = "";
+        $ionicScrollDelegate.scrollBottom(true);
     };
 })
 
