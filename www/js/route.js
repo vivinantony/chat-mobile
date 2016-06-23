@@ -3,31 +3,40 @@ angular.module('chatApp.route', [])
 .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
 
-        .state('app', {
+        .state('welcome', {
+        url: '/welcome',
+        templateUrl: 'templates/welcome.html',
+        controller: 'WelcomeCtrl'
+    })
+
+    .state('app', {
         url: '/app',
         abstract: true,
         templateUrl: 'templates/menu.html',
         controller: 'AppCtrl'
+
     })
 
-    .state('app.name', {
-        url: '/name',
+    .state('app.chats', {
+        url: '/chats',
         views: {
             'menuContent': {
-                templateUrl: 'templates/name.html'
+                templateUrl: 'templates/chats.html',
+                controller: 'ChatsCtrl'
             }
         }
     })
 
-    .state('app.chat', {
-        url: '/chat',
+    .state('app.chathead', {
+        url: '/chat/:id/:name/:mobile',
         views: {
             'menuContent': {
-                templateUrl: 'templates/chat.html'
+                templateUrl: 'templates/chat-head.html',
+                controller: 'ChatHeadCtrl'
             }
         }
     })
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/name');
+    $urlRouterProvider.otherwise('/welcome');
 });
