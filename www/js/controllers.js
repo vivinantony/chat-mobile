@@ -48,7 +48,7 @@ angular.module('starter.controllers', [])
     console.log(resf);
     console.log(ress);
 
-    if (resf == $scope.mobile && ress == $scope.imobile) {
+    if (resf == $scope.imobile && ress == $scope.mobile) {
         $scope.setu = "chat-id"
     }
 
