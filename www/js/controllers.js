@@ -37,7 +37,6 @@ angular.module('starter.controllers', [])
     });
 
     $scope.openChatHead = function(data) {
-        console.log(data);
         $state.go('app.chathead', { id: $scope.imobile + data.mobile, name: data.name, name: data.name, mobile: data.mobile })
     }
 
@@ -62,9 +61,7 @@ angular.module('starter.controllers', [])
 
     $scope.sendChat = function(chat) {
         $scope.chats.$add({
-            id1: $scope.mobile + $scope.imobile,
-            id2: $scope.imobile + $scope.mobile,
-            name: $scope.name,
+            name: $scope.iam,
             message: chat.message
         });
         chat.message = "";
