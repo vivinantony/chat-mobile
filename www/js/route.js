@@ -3,10 +3,16 @@ angular.module('chatApp')
 .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
 
-        .state('welcome', {
-        url: '/welcome',
-        templateUrl: 'templates/welcome.html',
-        controller: 'WelcomeCtrl'
+        .state('login', {
+        url: '/login',
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
+    })
+
+    .state('register', {
+        url: '/register',
+        templateUrl: 'templates/register.html',
+        controller: 'RegisterCtrl'
     })
 
     .state('app', {
@@ -38,5 +44,5 @@ angular.module('chatApp')
     })
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/welcome');
+    $urlRouterProvider.otherwise('/login');
 });

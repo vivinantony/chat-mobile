@@ -1,4 +1,4 @@
-angular.module('chatApp', ['ionic', 'firebase'])
+angular.module('chatApp', ['ionic', 'firebase', 'ngCordova'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -14,4 +14,8 @@ angular.module('chatApp', ['ionic', 'firebase'])
             StatusBar.styleDefault();
         }
     });
-});
+})
+
+.config(function($ionicConfigProvider) {
+    $ionicConfigProvider.backButton.previousTitleText(' ');
+})

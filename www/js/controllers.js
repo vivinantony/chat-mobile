@@ -1,32 +1,60 @@
 angular.module('chatApp')
 
-.controller('WelcomeCtrl', function($scope, $rootScope, $state, $firebaseArray, $firebaseObject) {
+.controller('LoginCtrl', function($scope, $rootScope, $state, $cordovaToast, DataApi) {
+    DataApi.getUserData();
 
-    var api = new Firebase("https://tlt-apps.firebaseio.com/chat-app/userdata");
-    $scope.userdata = $firebaseArray(api);
+    $scope.login = function(data) {
+        var successful;
+        angular.forEach($scope.savedData, function(res) {
+            if ((data.mobile == res.mobile) && (data.password == res.password)) {
+                successful = true;
+            } else {
+                // successful = false;
+            }
+        });
+
+        if (successful) {
+            $state.go("app.chats");
+            $cordovaToast.showLongBottom('Successfully logged in!');
+        } else {
+            $cordovaToast.showLongBottom('Mobile and password do not match.');
+        }
+    };
+})
+
+.controller('RegisterCtrl', function($scope, $rootScope, $state, $cordovaToast, DataApi) {
+    DataApi.getUserData();
 
     $scope.saveUserData = function(data) {
-        // if (data.mobile != obj[0].mobile) {
-        //     console.log("Created");
-        // } else {
-        //     console.log("Exists");
-        // }
-
-        $scope.userdata.$add({
-            name: data.name,
-            mobile: data.mobile
+        var successful;
+        angular.forEach($scope.savedData, function(res) {
+            if (data.mobile == res.mobile) {
+                successful = true;
+            } else {
+                // successful = false;
+            }
         });
-        $state.go("app.chats");
-        $rootScope.iam = data.name;
-        $rootScope.imobile = data.mobile;
-    }
 
+        if (successful) {
+            $cordovaToast.showLongBottom('Mobile number already registerd.');
+        } else {
+            $scope.userdata.$add({
+                name: data.name,
+                mobile: data.mobile,
+                password: data.password
+            });
+            $cordovaToast.showLongBottom('Welcome to Chat App!');
+            $state.go("app.chats");
+            $rootScope.iam = data.name;
+            $rootScope.imobile = data.mobile;
+        }
+    };
 })
 
 .controller('ChatsCtrl', function($scope, $state, $firebaseObject, $ionicLoading) {
     $ionicLoading.show();
 
-    var api = new Firebase("https://tlt-apps.firebaseio.com/chat-app/userdata");
+    var api = new Firebase("https://techie-apps.firebaseio.com/chat-app/userdata");
     var obj = $firebaseObject(api);
     obj.$loaded().then(function() {
         $scope.userdata = obj;
@@ -56,7 +84,7 @@ angular.module('chatApp')
         $scope.chatRoomId = sum;
     }
 
-    var api = new Firebase("https://tlt-apps.firebaseio.com/chat-app/chats/" + $scope.chatRoomId);
+    var api = new Firebase("https://techie-apps.firebaseio.com/chat-app/chats/" + $scope.chatRoomId);
     $scope.chats = $firebaseArray(api);
 
     $scope.sendChat = function(chat) {
