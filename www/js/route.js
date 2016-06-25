@@ -1,4 +1,4 @@
-angular.module('chatApp.route', [])
+angular.module('chatApp')
 
 .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider

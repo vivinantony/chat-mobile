@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('chatApp')
 
 .controller('WelcomeCtrl', function($scope, $rootScope, $state, $firebaseArray, $firebaseObject) {
 
@@ -69,9 +69,6 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('AppCtrl', function($scope, $rootScope, $state) {
-    $scope.startChat = function(name) {
-        $rootScope.username = name;
-        $state.go('app.chat');
-    };
+.controller('AppCtrl', function($scope) {
+
 })

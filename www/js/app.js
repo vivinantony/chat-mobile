@@ -1,4 +1,4 @@
-angular.module('chatApp', ['ionic', 'firebase', 'starter.controllers', 'chatApp.route'])
+angular.module('chatApp', ['ionic', 'firebase'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
