@@ -19,13 +19,104 @@ $dark:                            #444 !default;
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+// color
+$color-primary: #663399;
+$color-mybubble:#ffffe0;
+$color-urbubble:#E4F1FE;
+$color-silver: #c0c0c0;
 // common
 .center {
     text-align: center;
 }
 
-.chat-wrapper {
+.login-wrapper {
+    h4 {
+        color: $color-primary;
+    }
+    .or {
+        color: $color-silver
+    }
+    .button {
+        background-color: $color-primary;
+    }
+    .button.button-outline {
+        background: transparent;
+        border-color: $color-primary;
+        color: $color-primary;
+    }
+}
+
+.register-wrapper {
+    h4 {
+        color: $color-primary;
+    }
+    .or {
+        color: $color-silver
+    }
+    .button {
+        background-color: $color-primary;
+    }
+    .button.button-outline {
+        background: transparent;
+        border-color: $color-primary;
+        color: $color-primary;
+    }
+}
+
+.chat-head-wrapper {
+    .bubbles {
+        margin: 0 0 10px 0;
+        padding: 3px 8px;
+        border-radius: 4px;
+        position: relative;
+        width: 100%;
+    }
+    .bubbles::before {
+        content: "\00a0";
+        display: block;
+        width: 7px;
+        height: 6px;
+        position: absolute;
+        top: 10px;
+        transform: rotate( 29deg) skew( -35deg);
+        -moz-transform: rotate( 29deg) skew( -35deg);
+        -ms-transform: rotate( 29deg) skew( -35deg);
+        -o-transform: rotate( 29deg) skew( -35deg);
+        -webkit-transform: rotate( 29deg) skew( -35deg);
+    }
+    .mychats {
+        float: right;
+        background-color: $color-mybubble;
+    }
+    .mychats::before {
+        background-color: $color-mybubble;
+        right: -3px;
+    }
+    .urchats {
+        float: left;
+        background-color: $color-urbubble;
+    }
+    .urchats::before {
+        background-color: $color-urbubble;
+        left: -4px;
+    }
     .chat-input {
         width: 90%;
+        background-color: $color-mybubble
+    }
+    .chat-input::before {
+        background-color: $color-mybubble;
+        right: -3px;
+        content: "\00a0";
+        display: block;
+        width: 7px;
+        height: 6px;
+        position: absolute;
+        top: 11px;
+        transform: rotate( 29deg) skew( -35deg);
+        -moz-transform: rotate( 29deg) skew( -35deg);
+        -ms-transform: rotate( 29deg) skew( -35deg);
+        -o-transform: rotate( 29deg) skew( -35deg);
+        -webkit-transform: rotate( 29deg) skew( -35deg);
     }
 }

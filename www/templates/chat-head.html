@@ -1,15 +1,13 @@
-<ion-view view-title="{{name}}" class="chat-wrapper">
-    <ion-content>
-        <ion-list>
-            <ion-item ng-repeat="chat in chats">
-                <b>{{chat.name}}:</b> {{chat.message}}
-            </ion-item>
-        </ion-list>
+<ion-view view-title="{{urname}}" class="chat-head-wrapper">
+    <ion-content class="padding">
+        <div class="bubbles" ng-repeat="chat in chats" ng-class="whatClassIsIt(chat.name)">
+            <b>{{chat.name}}:</b> {{chat.message}}
+        </div>
     </ion-content>
     <ion-footer-bar>
         <label class="item item-input chat-input">
-            <input type="text" ng-model="chat.message" placeholder="Type here...">
+            <input type="text" ng-model="message" placeholder="Type here...">
         </label>
-        <button class="button button-clear" ng-click="sendChat(chat, username)"><i class="icon ion-paper-airplane placeholder-icon"></i></button>
+        <button class="button button-clear" ng-click="sendChat(message)"><i class="icon ion-paper-airplane placeholder-icon"></i></button>
     </ion-footer-bar>
 </ion-view>

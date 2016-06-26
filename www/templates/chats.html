@@ -1,7 +1,7 @@
-<ion-view view-title="Welcome {{iam}}!">
+<ion-view view-title="Welcome {{myname}}!">
     <ion-content class="padding">
         <ion-list>
-            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="user in userdata" type="item-text-wrap" ng-click="openChatHead(user)" ng-hide="imobile === user.mobile">
+            <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="user in userdata" type="item-text-wrap" ng-click="openChatHead(user)" ng-hide="mymobile === user.mobile">
                 <img src="img/face.jpg">
                 <h2>{{user.name}}</h2>
                 <i class="icon ion-chevron-right icon-accessory"></i>

@@ -1,24 +1,24 @@
-<ion-view hide-nav-bar="true" class="welcome-wrapper">
-    <ion-content class="padding">
-        <h3 class="center">Register</h3>
+<ion-view hide-nav-bar="true" class="register-wrapper">
+    <ion-content>
+        <h4 class="center">Register</h4>
         <form ng-submit="saveUserData(userdata)">
-            <div class="list">
-                <label class="item item-input">
-                    <span class="input-label">Name</span>
-                    <input type="text" ng-model="userdata.name">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Mobile</span>
-                    <input type="tel" ng-model="userdata.mobile">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Password</span>
-                    <input type="password" ng-model="userdata.password">
-                </label>
-                <label class="item">
-                    <button class="button button-block button-positive" type="submit">Register</button>
-                </label>
-            </div>
+            <label class="item item-input">
+                <i class="icon ion-person placeholder-icon"></i>
+                <input type="text" placeholder="Name" ng-model="userdata.name" required>
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-ios-telephone placeholder-icon"></i>
+                <input type="tel" placeholder="Mobile" ng-model="userdata.mobile" required>
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-ios-locked placeholder-icon"></i>
+                <input type="password" placeholder="Password" ng-model="userdata.password" required>
+            </label>
+            <label>
+                <button class="button button-full button-positive" type="submit">Register</button>
+            </label>
         </form>
+        <h5 class="center or">or</h5>
+        <button class="button button-full button-positive button-outline" ui-sref="login">Login</button>
     </ion-content>
 </ion-view>
