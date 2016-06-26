@@ -1,7 +1,11 @@
 <ion-view view-title="{{urname}}" class="chat-head-wrapper">
+    <ion-nav-buttons side="primary">
+        <button class="button button-icon icon ion-android-more-vertical" ng-click="viewProfile()"></button>
+    </ion-nav-buttons>
     <ion-content class="padding">
         <div class="bubbles" ng-repeat="chat in chats" ng-class="whatClassIsIt(chat.name)">
-            <b>{{chat.name}}:</b> {{chat.message}}
+            <!-- <b>{{chat.name}}:</b> -->{{chat.message}}
+            <label class="time">{{chat.time | date:"h:mma"}}</label>
         </div>
     </ion-content>
     <ion-footer-bar>

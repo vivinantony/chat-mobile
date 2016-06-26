@@ -1,5 +1,5 @@
 {
-  "name": "CHAT-MOBILE",
+  "name": "chat",
   "app_id": "",
   "gulpStartupTasks": [
     "sass",

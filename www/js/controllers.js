@@ -17,9 +17,11 @@ angular.module('chatApp')
 
         if (successful) {
             // $cordovaToast.showLongBottom('Successfully logged in!');
+            console.info('Successfully logged in!');
             $state.go("app.chats");
         } else {
             // $cordovaToast.showLongBottom('Mobile and password do not match.');
+            console.info('Mobile and password do not match.');
         }
     };
 })
@@ -40,16 +42,24 @@ angular.module('chatApp')
 
         if (successful) {
             // $cordovaToast.showLongBottom('Mobile number already registerd.');
+            console.info('Mobile number already registerd.');
         } else {
-            $scope.userdata.$add({
-                name: data.name,
-                mobile: data.mobile,
-                password: data.password
-            });
-            // $cordovaToast.showLongBottom('Welcome to Chat App!');
-            $state.go("app.chats");
-            $rootScope.myname = data.name;
-            $rootScope.mymobile = data.mobile;
+            if (data.mobile.length == 10) {
+                $scope.userdata.$add({
+                    name: data.name,
+                    mobile: data.mobile,
+                    password: data.password,
+                    created: Firebase.ServerValue.TIMESTAMP
+                });
+                // $cordovaToast.showLongBottom('Welcome to Chat App!');
+                console.info('Welcome to Chat App!');
+                $state.go("app.chats");
+                $rootScope.myname = data.name;
+                $rootScope.mymobile = data.mobile;
+            } else {
+                // $cordovaToast.showLongBottom('Enter a valid mobile number.');
+                console.info('Enter a valid mobile number.');
+            }
         }
     };
 })
@@ -81,7 +91,8 @@ angular.module('chatApp')
     $scope.sendChat = function(message) {
         $scope.chats.$add({
             name: myname,
-            message: message
+            message: message,
+            time: Firebase.ServerValue.TIMESTAMP
         });
         $scope.message = "";
         $ionicScrollDelegate.scrollBottom(true);
@@ -92,11 +103,11 @@ angular.module('chatApp')
             return "mychats"
         else
             return "urchats";
-    }
+    };
 
 })
 
-.controller('ProfileCtrl', function($scope, DataApi, $firebaseObject, $firebaseArray) {
+.controller('MyProfileCtrl', function($scope, DataApi, $firebaseObject, $firebaseArray) {
     var api = new Firebase("https://techie-apps.firebaseio.com/chat-app/userdata");
     var obj = $firebaseObject(api);
     obj.$loaded().then(function() {
@@ -137,10 +148,18 @@ angular.module('chatApp')
 
 })
 
-.controller('AppCtrl', function($scope, $ionicScrollDelegate) {
+.controller('UrProfileCtrl', function($scope, DataApi, $firebaseObject, $firebaseArray) {
+    $scope.viewProfile = function(val) {
 
-    $scope.scrollToBottom = function() {
-        $ionicScrollDelegate.scrollBottom(true);
     }
+})
 
+.controller('AppCtrl', function($scope, $rootScope, $state, $cordovaToast) {
+    $scope.logout = function() {
+        $rootScope.myname = '';
+        $rootScope.mymobile = '';
+        $state.go('login');
+        //$cordovaToast.showLongBottom('Successfully logged out!');
+        console.info('Successfully logged out!');
+    }
 })

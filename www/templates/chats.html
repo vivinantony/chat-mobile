@@ -1,10 +1,11 @@
 <ion-view view-title="Welcome {{myname}}!">
-    <ion-content class="padding">
+    <ion-content>
         <ion-list>
             <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="user in userdata" type="item-text-wrap" ng-click="openChatHead(user)" ng-hide="mymobile === user.mobile">
                 <img src="img/face.jpg">
                 <h2>{{user.name}}</h2>
                 <i class="icon ion-chevron-right icon-accessory"></i>
+                <!-- <span class="badge badge-assertive">6</span> -->
             </ion-item>
         </ion-list>
     </ion-content>

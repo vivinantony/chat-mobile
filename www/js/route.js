@@ -43,12 +43,22 @@ angular.module('chatApp')
         }
     })
 
-    .state('app.profile', {
-        url: '/profile',
+    .state('app.myprofile', {
+        url: '/myprofile',
         views: {
             'menuContent': {
-                templateUrl: 'templates/profile.html',
-                controller: 'ProfileCtrl'
+                templateUrl: 'templates/my-profile.html',
+                controller: 'MyProfileCtrl'
+            }
+        }
+    })
+
+    .state('app.urprofile', {
+        url: '/urprofile',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/ur-profile.html',
+                controller: 'UrProfileCtrl'
             }
         }
     })

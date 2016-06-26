@@ -15,18 +15,40 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
+$positive: #BE90D4 !default;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 // color
-$color-primary: #663399;
+$color-primary: #674172;
+$color-secondary: #663399;
 $color-mybubble:#ffffe0;
 $color-urbubble:#E4F1FE;
 $color-silver: #c0c0c0;
+$color-light: #ffffff;
 // common
 .center {
     text-align: center;
+}
+
+.overflow-scroll {
+    overflow-y: auto; //fix: scroll bar was visible even when there is empty content in a page
+}
+
+.bar.bar-header {
+    background-color: $color-primary;
+    .title,
+    .button {
+        color: $color-light;
+    }
+}
+
+.logo-wrapper {
+    padding: 30px 0;
+    img {
+        width: 200px;
+    }
 }
 
 .login-wrapper {
@@ -34,15 +56,10 @@ $color-silver: #c0c0c0;
         color: $color-primary;
     }
     .or {
-        color: $color-silver
+        color: $color-silver;
     }
-    .button {
+    ion-content {
         background-color: $color-primary;
-    }
-    .button.button-outline {
-        background: transparent;
-        border-color: $color-primary;
-        color: $color-primary;
     }
 }
 
@@ -51,15 +68,10 @@ $color-silver: #c0c0c0;
         color: $color-primary;
     }
     .or {
-        color: $color-silver
+        color: $color-silver;
     }
-    .button {
+    ion-content {
         background-color: $color-primary;
-    }
-    .button.button-outline {
-        background: transparent;
-        border-color: $color-primary;
-        color: $color-primary;
     }
 }
 
@@ -69,54 +81,46 @@ $color-silver: #c0c0c0;
         padding: 3px 8px;
         border-radius: 4px;
         position: relative;
-        width: 100%;
-    }
-    .bubbles::before {
-        content: "\00a0";
-        display: block;
-        width: 7px;
-        height: 6px;
-        position: absolute;
-        top: 10px;
-        transform: rotate( 29deg) skew( -35deg);
-        -moz-transform: rotate( 29deg) skew( -35deg);
-        -ms-transform: rotate( 29deg) skew( -35deg);
-        -o-transform: rotate( 29deg) skew( -35deg);
-        -webkit-transform: rotate( 29deg) skew( -35deg);
+        max-width: 100%;
+        clear: both;
+        &:before {
+            content: "\00a0";
+            display: block;
+            width: 7px;
+            height: 6px;
+            position: absolute;
+            top: 10px;
+            transform: rotate( 29deg) skew( -35deg);
+            -moz-transform: rotate( 29deg) skew( -35deg);
+            -ms-transform: rotate( 29deg) skew( -35deg);
+            -o-transform: rotate( 29deg) skew( -35deg);
+            -webkit-transform: rotate( 29deg) skew( -35deg);
+        }
+        .time {
+            font-size: 10px;
+            text-align: right;
+            margin: 0;
+            color: $color-silver;
+        }
     }
     .mychats {
         float: right;
         background-color: $color-mybubble;
-    }
-    .mychats::before {
-        background-color: $color-mybubble;
-        right: -3px;
+        &:before {
+            background-color: $color-mybubble;
+            right: -3px;
+        }
     }
     .urchats {
         float: left;
         background-color: $color-urbubble;
-    }
-    .urchats::before {
-        background-color: $color-urbubble;
-        left: -4px;
+        &:before {
+            background-color: $color-urbubble;
+            left: -4px;
+        }
     }
     .chat-input {
         width: 90%;
         background-color: $color-mybubble
-    }
-    .chat-input::before {
-        background-color: $color-mybubble;
-        right: -3px;
-        content: "\00a0";
-        display: block;
-        width: 7px;
-        height: 6px;
-        position: absolute;
-        top: 11px;
-        transform: rotate( 29deg) skew( -35deg);
-        -moz-transform: rotate( 29deg) skew( -35deg);
-        -ms-transform: rotate( 29deg) skew( -35deg);
-        -o-transform: rotate( 29deg) skew( -35deg);
-        -webkit-transform: rotate( 29deg) skew( -35deg);
     }
 }

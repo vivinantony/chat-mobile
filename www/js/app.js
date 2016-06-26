@@ -17,5 +17,7 @@ angular.module('chatApp', ['ionic', 'firebase', 'ngCordova'])
 })
 
 .config(function($ionicConfigProvider) {
-    $ionicConfigProvider.backButton.previousTitleText(' ');
+    $ionicConfigProvider.navBar.alignTitle('left');
+    $ionicConfigProvider.backButton.previousTitleText(false).text('');
+    $ionicConfigProvider.backButton.text('');
 })
