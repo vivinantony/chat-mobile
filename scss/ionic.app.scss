@@ -23,8 +23,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // color
 $color-primary: #674172;
 $color-secondary: #663399;
-$color-mybubble:#ffffe0;
-$color-urbubble:#E4F1FE;
+$color-mybubble:#DCC6E0;
+$color-urbubble:#AEA8D3;
 $color-silver: #c0c0c0;
 $color-light: #ffffff;
 // common
@@ -100,7 +100,6 @@ $color-light: #ffffff;
             font-size: 10px;
             text-align: right;
             margin: 0;
-            color: $color-silver;
         }
     }
     .mychats {

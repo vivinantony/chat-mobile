@@ -74,7 +74,7 @@ angular.module('chatApp')
 
 })
 
-.controller('ChatHeadCtrl', function($scope, $rootScope, $firebaseArray, $stateParams, $ionicScrollDelegate) {
+.controller('ChatHeadCtrl', function($scope, $rootScope, $state, $firebaseArray, $stateParams, $ionicScrollDelegate) {
     $scope.urname = $stateParams.name;
     var id = $stateParams.id;
     var urname = $stateParams.name;
@@ -104,6 +104,10 @@ angular.module('chatApp')
         else
             return "urchats";
     };
+
+    $scope.viewProfile = function(data) {
+        $state.go('app.urprofile');
+    }
 
 })
 
