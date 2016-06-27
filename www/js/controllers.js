@@ -89,11 +89,13 @@ angular.module('chatApp')
     $scope.chats = $firebaseArray(api);
 
     $scope.sendChat = function(message) {
-        $scope.chats.$add({
-            name: myname,
-            message: message,
-            time: Firebase.ServerValue.TIMESTAMP
-        });
+        if (message != '') {
+            $scope.chats.$add({
+                name: myname,
+                message: message,
+                time: Firebase.ServerValue.TIMESTAMP
+            });
+        }
         $scope.message = "";
         $ionicScrollDelegate.scrollBottom(true);
     };
