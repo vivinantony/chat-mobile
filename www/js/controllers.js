@@ -64,12 +64,12 @@ angular.module('chatApp')
     };
 })
 
-.controller('ChatsCtrl', function($scope, $state, DataApi) {
+.controller('ChatsCtrl', function($scope, $state, DataApi, $firebaseArray, $firebaseObject) {
 
     DataApi.getUserData();
 
     $scope.openChatHead = function(data) {
-        $state.go('app.chathead', { id: $scope.mymobile + data.mobile, name: data.name, mobile: data.mobile });
+        $state.go('app.chathead', { name: data.name, mobile: data.mobile });
     };
 
     $scope.viewImage = function($event) {
@@ -77,12 +77,13 @@ angular.module('chatApp')
         console.log("viewImage");
     };
 
+    var api = new Firebase("https://techie-apps.firebaseio.com/chat-app/chats");
+    $scope.chatss = $firebaseArray(api);
+
 })
 
 .controller('ChatHeadCtrl', function($scope, $rootScope, $state, $firebaseArray, $stateParams, $ionicScrollDelegate, $ionicPopover) {
-    $scope.urname = $stateParams.name;
-    var id = $stateParams.id;
-    var urname = $stateParams.name;
+    var urname = $scope.urname = $stateParams.name;
     var urmobile = $stateParams.mobile;
     var myname = $scope.myname;
     var mymobile = $scope.mymobile;
@@ -92,6 +93,7 @@ angular.module('chatApp')
 
     var api = new Firebase("https://techie-apps.firebaseio.com/chat-app/chats/" + $scope.chatRoomId);
     $scope.chats = $firebaseArray(api);
+
 
     $scope.sendChat = function(message) {
         if (message != '') {
@@ -118,8 +120,8 @@ angular.module('chatApp')
         $scope.popover = popover;
     });
 
-    $scope.viewContact = function(data) {
-        $state.go('app.urprofile');
+    $scope.viewContact = function() {
+        $state.go('app.urprofile', { mobile: urmobile });
         $scope.popover.hide();
     }
 
@@ -133,43 +135,23 @@ angular.module('chatApp')
     });
     angular.forEach($scope.userdata, function(res) {
         if ($scope.mymobile == res.mobile) {
-            console.log('............:    ' + res.$id);
             $scope.user = res;
-            $scope.uid = res.$id;
         }
     });
-
-
-
-    console.log('qqqqqqqqqqqqqqqqqqqqq:    ' + $scope.uid);
-
-    var api1 = new Firebase("https://techie-apps.firebaseio.com/chat-app/userdata");
-    // $scope.olddata = $firebaseArray(api1);
-    var olddata = $firebaseArray(api1);
-
-
-    $scope.editUser = function(user) {
-        // $scope.olddata.$save();
-
-        // $scope.olddata.$edit({
-        //     name: user.name,
-        //     mobile: user.mobile,
-        //     password: user.password
-        // });
-
-        var item = olddata.$getRecord(user.$id);
-        // item.user = "alanisawesome";
-        olddata.$save(item);
-
-        $scope.datas = olddata;
-    }
-
 })
 
-.controller('UrProfileCtrl', function($scope, DataApi, $firebaseObject, $firebaseArray) {
-    $scope.viewProfile = function(val) {
-
-    }
+.controller('UrProfileCtrl', function($scope, DataApi, $firebaseObject, $firebaseArray, $stateParams) {
+    var urmobile = $stateParams.mobile;
+    var api = new Firebase("https://techie-apps.firebaseio.com/chat-app/userdata");
+    var obj = $firebaseObject(api);
+    obj.$loaded().then(function() {
+        $scope.userdata = obj;
+    });
+    angular.forEach($scope.userdata, function(res) {
+        if (urmobile == res.mobile) {
+            $scope.user = res;
+        }
+    });
 })
 
 .controller('AppCtrl', function($scope, $rootScope, $state, $cordovaToast) {

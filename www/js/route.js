@@ -34,7 +34,7 @@ angular.module('chatApp')
     })
 
     .state('app.chathead', {
-        url: '/chat/:id/:name/:mobile',
+        url: '/chat/:name/:mobile',
         views: {
             'menuContent': {
                 templateUrl: 'templates/chat-head.html',
@@ -44,7 +44,7 @@ angular.module('chatApp')
     })
 
     .state('app.myprofile', {
-        url: '/myprofile',
+        url: '/profile',
         views: {
             'menuContent': {
                 templateUrl: 'templates/my-profile.html',
@@ -54,7 +54,7 @@ angular.module('chatApp')
     })
 
     .state('app.urprofile', {
-        url: '/urprofile',
+        url: '/profile/:mobile',
         views: {
             'menuContent': {
                 templateUrl: 'templates/ur-profile.html',
