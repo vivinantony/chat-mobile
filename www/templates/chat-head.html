@@ -1,6 +1,6 @@
 <ion-view view-title="{{urname}}" class="chat-head-wrapper">
     <ion-nav-buttons side="secondary">
-        <button class="button button-icon icon ion-android-more-vertical"></button>
+        <button class="button button-icon icon ion-android-more-vertical" ng-click="popover.show($event)"></button>
     </ion-nav-buttons>
     <ion-content class="padding">
         <div class="bubbles" ng-repeat="chat in chats" ng-class="whatClassIsIt(chat.name)">
@@ -15,4 +15,18 @@
         </label>
         <button class="button button-clear" ng-click="sendChat(message)"><i class="icon ion-paper-airplane placeholder-icon"></i></button>
     </ion-footer-bar>
+    <script id="templates/popover.html" type="text/ng-template">
+        <ion-popover-view>
+            <ion-content>
+                <div class="list">
+                    <a class="item" ng-click="viewContact
+(data)">View contact</a>
+                    <a class="item">Link 1</a>
+                    <a class="item">Link 2</a>
+                    <a class="item">Link 3</a>
+                    <a class="item">Link 4</a>
+                </div>
+            </ion-content>
+        </ion-popover-view>
+    </script>
 </ion-view>

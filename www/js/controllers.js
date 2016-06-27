@@ -72,9 +72,14 @@ angular.module('chatApp')
         $state.go('app.chathead', { id: $scope.mymobile + data.mobile, name: data.name, mobile: data.mobile });
     };
 
+    $scope.viewImage = function($event) {
+        $event.stopPropagation();
+        console.log("viewImage");
+    };
+
 })
 
-.controller('ChatHeadCtrl', function($scope, $rootScope, $state, $firebaseArray, $stateParams, $ionicScrollDelegate) {
+.controller('ChatHeadCtrl', function($scope, $rootScope, $state, $firebaseArray, $stateParams, $ionicScrollDelegate, $ionicPopover) {
     $scope.urname = $stateParams.name;
     var id = $stateParams.id;
     var urname = $stateParams.name;
@@ -107,8 +112,15 @@ angular.module('chatApp')
             return "urchats";
     };
 
-    $scope.viewProfile = function(data) {
+    $ionicPopover.fromTemplateUrl('templates/popover.html', {
+        scope: $scope,
+    }).then(function(popover) {
+        $scope.popover = popover;
+    });
+
+    $scope.viewContact = function(data) {
         $state.go('app.urprofile');
+        $scope.popover.hide();
     }
 
 })
