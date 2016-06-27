@@ -4,8 +4,9 @@
     </ion-nav-buttons>
     <ion-content class="padding">
         <div class="bubbles" ng-repeat="chat in chats" ng-class="whatClassIsIt(chat.name)">
-            <!-- <b>{{chat.name}}:</b> -->{{chat.message}}
-            <label class="time">{{chat.time | date:"h:mma"}}</label>
+            <!-- <b>{{chat.name}}:</b> -->
+            {{chat.message}}
+            <p class="time">{{chat.time | date:"h:mma"}}</p>
         </div>
     </ion-content>
     <ion-footer-bar>
