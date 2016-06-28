@@ -1,0 +1,16 @@
+<ion-view view-title="Contacts">
+    <ion-content>
+        <div class="list" ng-show="phoneContacts">
+            <div class="card" ng-repeat="contact in phoneContacts" ng-if="contact.name && contact.phoneNumbers">
+                <div class="item item-divider">
+                    {{ contact.name.formatted }}
+                </div>
+                <div class="item item-text-wrap">
+                    <div ng-repeat="number in contact.phoneNumbers">
+                        <p>{{ number.value }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

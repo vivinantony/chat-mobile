@@ -63,6 +63,16 @@ angular.module('chatApp')
         }
     })
 
+    .state('app.contacts', {
+        url: '/contacts',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/contacts.html',
+                controller: 'ContactsCtrl'
+            }
+        }
+    })
+
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
 });

@@ -154,6 +154,28 @@ angular.module('chatApp')
     });
 })
 
+.controller('ContactsCtrl', function($scope, $cordovaContacts, $ionicLoading) {
+    $ionicLoading.show();
+    $scope.phoneContacts = [];
+
+    function onSuccess(contacts) {
+        for (var i = 0; i < contacts.length; i++) {
+            var contact = contacts[i];
+            $scope.phoneContacts.push(contact);
+        }
+        $ionicLoading.hide();
+    };
+
+    function onError(contactError) {
+        console.log(contactError);
+        $ionicLoading.hide();
+    };
+    var options = {};
+    options.multiple = true;
+    $cordovaContacts.find(options).then(onSuccess, onError);
+
+})
+
 .controller('AppCtrl', function($scope, $rootScope, $state, $cordovaToast) {
     $scope.logout = function() {
         $rootScope.myname = '';
